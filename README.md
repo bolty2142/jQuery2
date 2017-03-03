@@ -23,15 +23,15 @@ With this to-do app, users will be able to:
 
 First, fork and clone this repo, so that we can access this README during our development. For the sake of simplicity, we have created the index.html file and added some markup for the ui. So, no need to change it yet.
 
-Now, let's create a folder called 'app.' This is where we will store the guts of our app. Inside the app folder let's make a folder called 'scripts.' This is where we will store all our Javascript.
+Now, let's create a folder called 'app.' This is where we will store the guts of our app. Inside the app folder let's make a folder called 'scripts.js.' This is where we will store all our Javascript.
 
-Inside the js folder we will create our main Javascript named 'scripts.js'.
+Inside the js folder we will create our main Javascript named 'scripts.js.js'.
 
 Now that we've made our basic files, we want to get them all hooked together in our index.html file.
 
 *Remember: a lot of times errors in the beginning of a project are because the files are not properly linked.
 
-*Remember: your browser will read your index.html from top-to-bottom, left-to-right. This means if you put your jQuery under your scripts.js file you will end up with an error.*
+*Remember: your browser will read your index.html from top-to-bottom, left-to-right. This means if you put your jQuery under your scripts.js.js file you will end up with an error.*
 
 
 #Step 2
@@ -39,9 +39,9 @@ Now that we've made our basic files, we want to get them all hooked together in 
 
 Now that we have our environment set up and our markup written, it's time to use some jQuery. 
 
-The first thing we want to do is go into our scripts.js file and create our document ready function:
+The first thing we want to do is go into our scripts.js.js file and create our document ready function:
 
-*scripts.js*
+*scripts.js.js*
 
 ```javascript
 
@@ -51,13 +51,13 @@ $(document).ready(function() {
 
 ```
 
-This allows us to initialize our jQuery code when the document loads. It might look a bit weird, but it's what we do when we're working with jQuery. Remember, all of the code in our scripts.js will go within the curly braces of the above function.
+This allows us to initialize our jQuery code when the document loads. It might look a bit weird, but it's what we do when we're working with jQuery. Remember, all of the code in our scripts.js.js will go within the curly braces of the above function.
 
 ###Basic Architecture
 
 We are going to be creating a todo list. So the easiest way to store a list of things is to create an array!
 
-*scripts.js*
+*scripts.js.js*
 ```javascript
 var listo = [];
 ```
@@ -66,7 +66,7 @@ Listo will be our main array for storing tasks.
 
 Now, we don't want to just store strings. Instead, we will store Task objects into our array. Because our users are going to be making a lot of Tasks we should perhaps streamline the object creating process with a **constructor**
 
-*scripts.js*
+*scripts.js.js*
 ```javascript
 var Task = function(task) {
 	this.task = task;
@@ -102,7 +102,7 @@ One more thing we should do is add a script tag at the bottom of our page that w
 *index.html*
 ```html
 <script
-src="./app/scripts/scripts.js">
+src="./app/scripts.js/scripts.js.js">
 </script>
 ```
 
@@ -112,7 +112,7 @@ When we enter something into the input field and hit save, we want to create an 
 
 Let's make a function to do that for us.
 
-*scripts.js*
+*scripts.js.js*
 
 ```javascript
 var addTask = function(task) {};
@@ -120,7 +120,7 @@ var addTask = function(task) {};
 
 We don't want people to be able to create blank tasks, that would be a little frustrating. Let's put a conditional in the function so that it only runs if our task is there.
 
-*scripts.js*
+*scripts.js.js*
 ```javascript
 var addTask = function(task) {
 	if(task) {
@@ -132,7 +132,7 @@ Now our code will only run if 'task' is "truthy". Empty tasks are not truthy sin
 
 Next, we want to call our task constructor and fill it with the new task, then we will push the new task to listo, and save it.
 
-*scripts.js*
+*scripts.js.js*
 ```javascript
 var addTask = function(task) {
 	if(task) {
@@ -144,7 +144,7 @@ var addTask = function(task) {
 
 There are a few things we should add to this function to make it work correctly. First, we want the input form to clear after we submit it, which currently isn't happening. Then we want to make it so we can show our new list item in our index.html.
 
-*scripts.js*
+*scripts.js.js*
 
 ```javascript
 var addTask = function(task) {
@@ -171,14 +171,14 @@ var addTask = function(task) {
 
 First, we should make it so that our newTaskForm is hidden when the document loads. Let's put this near the top of our document so that it loads correctly.
 
-*scripts.js*
+*scripts.js.js*
 ```javascript
 	$('#newTaskForm').hide();
 ```
 
 Then, let's add the fade toggle so that our New button will hide and show the input form at the same time.
 
-*scripts.js*
+*scripts.js.js*
 ```javascript
 var addTask = function(task) {
 	if(task) {
@@ -206,7 +206,7 @@ var addTask = function(task) {
 
 We will now call a jQuery event that calls the addTask function when we click the saveNewItem button.
 
-*scripts.js*
+*scripts.js.js*
 ```javascript
 $('#saveNewItem').on('click', function (e) {
     e.preventDefault();
@@ -217,7 +217,7 @@ $('#saveNewItem').on('click', function (e) {
 
 Finally, let's make it so that we can open and close the new task form with the newListItem and Cancel button.
 
-*scripts.js*
+*scripts.js.js*
 ```javascript
 //Opens form
   $('#add-todo').on('click', function () {
@@ -266,7 +266,7 @@ The css is already done for the progress-box class
 
 We need to include this function in our code. We will refer to this function in a minute, so for now, just include the function at the top of your app.
 
-*scripts.js*
+*scripts.js.js*
 ```javascript
 var advanceTask = function(task) {
   var modified = task.innerText.trim()
@@ -292,7 +292,7 @@ If you remember, when we created our task constructor we took in the argument fo
 
 First let's make a function that allows us to change the status of an item from 'new' to 'inProgress'.
 
-*scripts.js*
+*scripts.js.js*
 ```javascript
 $(document).on('click', '#item', function(e) {
 	e.preventDefault();
@@ -313,7 +313,7 @@ Now let's set a variable called task so that we can access the 'this' keyword to
 
 We are also going to change it's ID to the string 'inProgress'.
 
-*scripts.js*
+*scripts.js.js*
 ```javascript
 $(document).on('click', '#item', function(e) {
 	e.preventDefault();
@@ -325,7 +325,7 @@ $(document).on('click', '#item', function(e) {
 
 The last thing this function needs is the ability to move the actual list item. We do that by pulling all of the html around the item itself.
 
-*scripts.js*
+*scripts.js.js*
 ```javascript
 $(document).on('click', '#item', function(e) {
 	e.preventDefault();
@@ -338,7 +338,7 @@ $(document).on('click', '#item', function(e) {
 
 We can also move the items from 'inProgress' to 'archived' with a similar function:
 
-*scripts.js*
+*scripts.js.js*
 ```javascript
 $(document).on('click', '#inProgress', function (e) {
   e.preventDefault();
@@ -352,7 +352,7 @@ $(document).on('click', '#inProgress', function (e) {
 
 Finally, in a similar fashion we want to create a way to delete the items on the list. All we have to do is pass a task into the advanceTask function without a new id. You can study the advanceTask function we built to understand how it works.
 
-*scripts.js*
+*scripts.js.js*
 ```javascript
 $(document).on('click', '#archived', function (e) {
   e.preventDefault();
